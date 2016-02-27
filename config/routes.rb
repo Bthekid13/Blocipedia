@@ -4,14 +4,6 @@ Rails.application.routes.draw do
 
   resources :wikis
 
-  # get "wikis/index"
-  #
-  # get "wikis/show"
-  #
-  # get "wikis/new"
-  #
-  # get "wikis/edit"
-
   devise_for :users
 
 end
