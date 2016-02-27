@@ -3,7 +3,10 @@
 <div class="media">
   <div class="media-body">
     <h4 class="media-heading">
-      <%= link_to wiki.title, wikis_index_path %>
+      <!-- To link to a wiki show page -->
+      <%= link_to wiki.title, wiki %>
+      <!-- To link to the index of wikis -->
+      <%= link_to 'Index', wikis_path %>
     </h4>
   </div>
 </div>
