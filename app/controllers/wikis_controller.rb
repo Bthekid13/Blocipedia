@@ -12,6 +12,10 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
   end
 
+  def edit
+    @wiki = Wiki.find(params[:id])
+  end
+
   def create
     @wiki = Wiki.new
     @wiki.title = params[:wiki][:title]
@@ -24,10 +28,6 @@ class WikisController < ApplicationController
       flash.now[:alert] = "There was an error saving your Wiki, please try again."
       render :new
     end
-  end
-
-  def edit
-    @wiki = Wiki.find(params[:id])
   end
 
   def update
@@ -52,7 +52,7 @@ class WikisController < ApplicationController
       redirect_to wikis_path
     else
       flash.now[:alert] = "We couldn't delete your wiki, please try again."
-      render :show
+      render :index
     end
   end
 end

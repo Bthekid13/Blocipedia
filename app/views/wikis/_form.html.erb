@@ -1,4 +1,3 @@
-<h1> New post </h1>
   <div class="row">
     <div class="col-md-4">
       <p> Guidelines for Wikis </p>
@@ -20,6 +19,11 @@
       <div class="form-group">
         <%= f.label :body %>
         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: 'Wiki Body' %>
+      </div>
+
+      <div class="form-group">
+        <%=f.label :private %>
+        <%=f.check_box :private %>
       </div>
 
       <div class="form-group">
