@@ -17,9 +17,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
+    @wiki = Wiki.new(wiki_params)
 
     if @wiki.save
       flash[:notice] = "Your Wiki has been created"
@@ -32,10 +30,9 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
+    authorize @wiki, :update?
 
-    if @wiki.save
+    if @wiki.update(wiki_params)
       flash[:notice] = "Your wiki has been updated"
       redirect_to @wiki
     else
@@ -54,5 +51,10 @@ class WikisController < ApplicationController
       flash.now[:alert] = "We couldn't delete your wiki, please try again."
       render :index
     end
+  end
+  private
+
+  def wiki_params
+    params.require(:wiki).permit(:title, :body)
   end
 end

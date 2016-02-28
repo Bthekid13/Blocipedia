@@ -5,8 +5,4 @@ class WikiPolicy < ApplicationPolicy
     @user = user
     @wiki = wiki
   end
-
-  def update?
-    user.admin? or not post.published?
-  end
 end
