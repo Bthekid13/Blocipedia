@@ -37,9 +37,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
-    autoprefixer-rails (6.3.3)
+    autoprefixer-rails (6.3.3.1)
       execjs
-      json
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -55,10 +54,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    concurrent-ruby (1.0.0)
+    concurrent-ruby (1.0.1)
     daemons (1.2.3)
     debug_inspector (0.0.2)
-    devise (3.5.5)
+    devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -105,8 +104,10 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
-    pundit (1.1.0)
+    pundit (0.3.0)
       activesupport (>= 3.0.0)
+    pundit_custom_errors (0.9.0)
+      pundit (~> 0.3, >= 0.3.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -174,11 +175,11 @@ GEM
     skinny (0.2.4)
       eventmachine (~> 1.0.0)
       thin (>= 1.5, < 1.7)
-    spring (1.6.3)
+    spring (1.6.4)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.0.2)
+    sprockets-rails (3.0.3)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
@@ -197,7 +198,7 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    warden (1.2.5)
+    warden (1.2.6)
       rack (>= 1.0)
     web-console (2.3.0)
       activemodel (>= 4.0)
@@ -218,6 +219,7 @@ DEPENDENCIES
   jquery-rails
   mailcatcher
   pundit
+  pundit_custom_errors
   rails (= 4.2.5)
   rspec-rails (~> 3.0.0)
   sass-rails (~> 5.0)

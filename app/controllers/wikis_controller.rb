@@ -58,10 +58,6 @@ class WikisController < ApplicationController
   end
   private
 
-  def user_not_authorized
-    flash[:alert] = "You have to be signed in first."
-    redirect_to (request.referrer || root_path )
-  end
 
   def wiki_params
     params.require(:wiki).permit(:title, :body)
