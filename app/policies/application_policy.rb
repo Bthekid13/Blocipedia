@@ -1,13 +1,15 @@
 class ApplicationPolicy
   attr_reader :user, :record
 
+  #Roles: Admin, Standard, Premium
+
   def initialize(user, record)
     @user = user
     @record = record
   end
 
   def index?
-    false
+    @user.standard?
   end
 
   def show?
@@ -31,7 +33,8 @@ class ApplicationPolicy
   end
 
   def destroy?
-    false
+     @user.admin?
+
   end
 
   def scope

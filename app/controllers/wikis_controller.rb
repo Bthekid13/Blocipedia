@@ -1,7 +1,9 @@
 class WikisController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     @wikis = Wiki.all
+    authorize Wiki
   end
 
   def show
@@ -30,9 +32,10 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize @wiki, :update?
+    @wiki.title = params[:wiki][:title]
+    @wiki.body = params[:wiki][:body]
 
-    if @wiki.update(wiki_params)
+    if @wiki.save
       flash[:notice] = "Your wiki has been updated"
       redirect_to @wiki
     else
@@ -43,6 +46,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
+    authorize Wiki
 
     if @wiki.delete
       flash[:notice] = "Your Wiki has been deleted"
@@ -53,6 +57,11 @@ class WikisController < ApplicationController
     end
   end
   private
+
+  def user_not_authorized
+    flash[:alert] = "You have to be signed in first."
+    redirect_to (request.referrer || root_path )
+  end
 
   def wiki_params
     params.require(:wiki).permit(:title, :body)
