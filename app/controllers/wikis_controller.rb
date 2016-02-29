@@ -3,7 +3,6 @@ class WikisController < ApplicationController
 
   def index
     @wikis = Wiki.all
-    authorize Wiki
   end
 
   def show

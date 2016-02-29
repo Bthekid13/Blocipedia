@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
   #
   def user_not_authorized
-    flash[:alert] = "You have to be signed in first."
+    flash[:alert] = "You must be an admin to do that"
     redirect_to (request.referrer || root_path )
   end
 end

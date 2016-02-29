@@ -34,7 +34,6 @@ class ApplicationPolicy
 
   def destroy?
      @user.admin?
-
   end
 
   def scope

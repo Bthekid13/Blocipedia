@@ -5,6 +5,4 @@ class WikiPolicy < ApplicationPolicy
     @user = user
     @wiki = wiki
   end
-
-
 end
