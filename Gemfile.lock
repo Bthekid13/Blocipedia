@@ -73,6 +73,8 @@ GEM
     factory_girl_rails (4.6.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faker (1.6.3)
+      i18n (~> 0.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -106,8 +108,6 @@ GEM
     orm_adapter (0.5.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
-    pundit_custom_errors (0.9.0)
-      pundit (~> 0.3, >= 0.3.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -215,11 +215,11 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   factory_girl_rails
+  faker
   jbuilder (~> 2.0)
   jquery-rails
   mailcatcher
   pundit
-  pundit_custom_errors
   rails (= 4.2.5)
   rspec-rails (~> 3.0.0)
   sass-rails (~> 5.0)
