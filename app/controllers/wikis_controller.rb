@@ -45,7 +45,8 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
-    authorize Wiki
+    authorize Wiki, rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized_to_destroy
+
 
     if @wiki.delete
       flash[:notice] = "Your Wiki has been deleted"
@@ -57,6 +58,10 @@ class WikisController < ApplicationController
   end
   private
 
+  def user_not_authorized_to_destroy
+    flash[:alert] = "You must be an admin to do that"
+    redirect_to request.referrer
+  end
 
   def wiki_params
     params.require(:wiki).permit(:title, :body)
