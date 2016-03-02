@@ -18,4 +18,5 @@ RSpec.shared_examples_for 'it has attributes' do |model, attributes_hash|
   it "#{model} has no unlisted attributes" do
     expect(@hash_of_attributes).to eq(attributes_hash)
   end
+
 end
