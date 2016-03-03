@@ -2,11 +2,15 @@ class WikisController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.visible_to(current_user)
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+
+    # unless @wiki.public || (current_user.admin? || current_user.premium? )
+    #   flash
+
   end
 
   def new
