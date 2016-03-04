@@ -3,11 +3,11 @@
     <div class="col-md-4">
       <h1> Wiki Form </h1>
       <p> Guidelines for Wikis </p>
-        <ul>
-          <li> Stay on topic </li>
-          <li> Incorperate as many puns as possible </li>
-          <li> Write nothing your dog would be ashamed of </li>
-        </ul>
+      <ul>
+        <li> Stay on topic </li>
+        <li> Incorperate as many puns as possible </li>
+        <li> Write nothing your dog would be ashamed of </li>
+      </ul>
     </div>
     <div class="col-md-8">
       <%= form_for @wiki do |f| %>
@@ -23,10 +23,13 @@
         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: 'Wiki Body' %>
       </div>
 
+      <% if current_user.admin? || current_user.premium? %>
       <div class="form-group">
-        <%=f.label :private %>
-        <%=f.check_box :private %>
+        <%=f.label :private, class: 'check_box' do %>
+        <%=f.check_box :private %> Private
+        <% end %>
       </div>
+      <% end %>
 
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>

@@ -12,7 +12,7 @@
   <li><%= link_to "Home", root_path %></li>
   <li><%= link_to "Wikis", wikis_path %></li>
 
-  <div class= "pull-right">
+  <div class= "pull-right user-info">
     <% if user_signed_in? %>
     <li>Signed in as:<strong><%= current_user.email %></strong></li>
       <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>

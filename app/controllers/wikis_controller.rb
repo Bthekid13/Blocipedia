@@ -2,11 +2,17 @@ class WikisController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.visible_to(current_user)
   end
 
   def show
     @wiki = Wiki.find(params[:id])
+
+    unless @wiki.private == false || (current_user.admin? || current_user.premium?)
+      flash[:alert] = "You must be a premium member to view that"
+      redirect_to request.referrer 
+    end
+
   end
 
   def new
