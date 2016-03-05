@@ -1,4 +1,5 @@
 class WikisController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     @wikis = Wiki.all
@@ -17,9 +18,7 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
+    @wiki = Wiki.new(wiki_params)
 
     if @wiki.save
       flash[:notice] = "Your Wiki has been created"
@@ -46,6 +45,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
+    authorize Wiki
 
     if @wiki.delete
       flash[:notice] = "Your Wiki has been deleted"
@@ -54,5 +54,11 @@ class WikisController < ApplicationController
       flash.now[:alert] = "We couldn't delete your wiki, please try again."
       render :index
     end
+  end
+  private
+
+
+  def wiki_params
+    params.require(:wiki).permit(:title, :body)
   end
 end
