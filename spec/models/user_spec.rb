@@ -32,5 +32,5 @@ describe User do
   ## Class Methods
 
   ## Instance Methods
-
 end
+
