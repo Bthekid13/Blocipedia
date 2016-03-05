@@ -8,9 +8,6 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
 
-    # unless @wiki.public || (current_user.admin? || current_user.premium? )
-    #   flash
-
   end
 
   def new
