@@ -23,10 +23,11 @@ end
 
 users = User.all
 
-10.times do |n|
+100.times do
   w = Wiki.new
+  w.user = users.sample
   w.title = Faker::Beer.name
-  w.body =  Faker::StarWars.character
+  w.body =  Faker::StarWars.character + Faker::StarWars.quote + Faker::Hipster.paragraph(rand(1..6)) + "\n" + rand(1..6).times.map { Faker::Hipster.paragraph(rand(1..10)) }.join("\n")
   w.private = Faker::Boolean.boolean
 
   w.save!

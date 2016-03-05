@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.shared_examples_for 'it has attributes' do |model, attributes_hash|
   before :context do
     @hash_of_attributes = model.attribute_names.map {|n| [n.to_sym, model.type_for_attribute(n).type]}.to_h
