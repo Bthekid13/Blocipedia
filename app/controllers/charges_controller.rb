@@ -9,27 +9,43 @@ class ChargesController < ApplicationController
   end
 
   def create
-    # Creates a Stripe Customer object, for associating
-    # with the charge
-    customer = Stripe::Customer.create(
-    email: current_user.email,
-    card: params[:stripeToken]
-    )
+    # I opted to use a subscription over a single charge plan, but this is the code
+    #for a single charge
+    # charge = Stripe::Charge.create(
+    # customer: customer.id, # Note -- this is NOT the user_id in your app
+    # amount: Amount.default,
+    # description: "BigMoney Membership - #{current_user.email}",
+    # currency: 'usd'
+    # )
 
-    charge = Stripe::Charge.create(
-    customer: customer.id,
-    amount: 1500,
-    description: "BigMoney Membership - #{current_user.email}",
-    currency: 'usd'
-    )
 
-    if charge.present?
+      customer = Stripe::Customer.create(
+      email: current_user.email,
+      plan: '1111',
+      card: params[:stripeToken]
+      )
+
+      current_user.subscribed = true
+      current_user.stripeid = customer.id
+      current_user.save
+
+
+    if current_user.subscribed?
       current_user.update_attributes(role: 2)
     end
-
-
     flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
     redirect_to root_path
+
+
+    #
+    #
+  end
+
+  def destroy
+
+    # # customer = Stripe::Charge.retrieve(id: "ch_17llMsFVfN4XkAreP25C8hkJ", expand: ['customer'])
+    # customer = Stripe::Customer.retrieve({CUSTOMER_ID})
+    # customer.subscriptions.retrieve({SUBSCRIPTION_ID}).delete
   end
 
   # Stripe will send back CardErrors, with friendly messages
