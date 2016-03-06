@@ -18,8 +18,6 @@ class ChargesController < ApplicationController
     # description: "BigMoney Membership - #{current_user.email}",
     # currency: 'usd'
     # )
-
-
       customer = Stripe::Customer.create(
       email: current_user.email,
       plan: '1111',
@@ -29,19 +27,14 @@ class ChargesController < ApplicationController
 
       current_user.subscribed = true
       current_user.stripeid = customer.id
-      subscription = 
+      subscription =
       current_user.save
-
 
     if current_user.subscribed?
       current_user.update_attributes(role: 2)
     end
     flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
     redirect_to root_path
-
-
-    #
-    #
   end
 
   def destroy
