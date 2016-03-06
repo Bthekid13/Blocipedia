@@ -10,7 +10,8 @@ class ChargesController < ApplicationController
 
   def create
     # I opted to use a subscription over a single charge plan, but this is the code
-    #for a single charge
+    # for a single charge
+
     # charge = Stripe::Charge.create(
     # customer: customer.id, # Note -- this is NOT the user_id in your app
     # amount: Amount.default,
@@ -22,11 +23,13 @@ class ChargesController < ApplicationController
       customer = Stripe::Customer.create(
       email: current_user.email,
       plan: '1111',
-      card: params[:stripeToken]
+      card: params[:stripeToken],
+      customer: customer.id
       )
 
       current_user.subscribed = true
       current_user.stripeid = customer.id
+      subscription = 
       current_user.save
 
 
@@ -44,7 +47,8 @@ class ChargesController < ApplicationController
   def destroy
 
     # # customer = Stripe::Charge.retrieve(id: "ch_17llMsFVfN4XkAreP25C8hkJ", expand: ['customer'])
-    # customer = Stripe::Customer.retrieve({CUSTOMER_ID})
+    #
+    # customer = Stripe::Customer.retrieve({current_user.stripeid})
     # customer.subscriptions.retrieve({SUBSCRIPTION_ID}).delete
   end
 
