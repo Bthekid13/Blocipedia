@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col-md-4">
       <h2>Free Plan</h2>
-      <%= link_to "Free","", class: 'btn btn-primary' %>
+      <%= link_to "Free",new_user_registration_path, class: 'btn btn-primary' %>
     </div>
     <div class="col-md-4">
       <h2>Premium Plan</h2>
@@ -22,6 +22,6 @@
     </div>
     <div class="col-md-4">
       <h2>Unsubscribe</h2>
-      <%= link_to "unsubcribe", "", class: 'btn btn-danger' %>
+      <%= link_to "Downgrade", downgrade_path, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to downgrade your account? All of your private wikis will become public.'} %>
     </div>
 </div>
