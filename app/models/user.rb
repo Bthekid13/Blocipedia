@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable, :confirmable
 
   enum role: [:standard, :premium, :admin ]
-  
+
   #Associations
   has_many :wikis
 
@@ -13,6 +13,13 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
 
   #Class Methods
+  # def role_change
+  #   ActiveRecord::Base.transaction do
+  #     if User.update_attributes(role: 1)
+  #       User.update_attributes(private: false)
+  #     end
+  #   end
+  # end
 
   #Instance Methods
 

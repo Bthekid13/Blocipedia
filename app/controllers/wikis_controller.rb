@@ -8,6 +8,11 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
 
+    unless @wiki.private == false || (current_user.admin? || current_user.premium?)
+      flash[:alert] = "You must be a premium member to view that"
+      redirect_to request.referrer
+    end
+
   end
 
   def new
