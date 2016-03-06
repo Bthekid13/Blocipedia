@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #:lockable, :timeoutable and :omniauthable
   after_initialize :set_default_role, :if => :new_record?
-  before_initialize :role_change
 
   has_many :wikis
   devise :database_authenticatable, :registerable, :recoverable,
@@ -14,11 +13,11 @@ class User < ActiveRecord::Base
     self.role ||= :standard
   end
 
-  def role_change
-    ActiveRecord::Base.transaction do
-      if User.update_attributes(role: 1)
-        User.update_attributes(private: false)
-      end
-    end
-  end
+  # def role_change
+  #   ActiveRecord::Base.transaction do
+  #     if User.update_attributes(role: 1)
+  #       User.update_attributes(private: false)
+  #     end
+  #   end
+  # end
 end
