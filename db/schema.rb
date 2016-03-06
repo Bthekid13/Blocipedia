@@ -36,9 +36,10 @@ ActiveRecord::Schema.define(version: 20160305191215) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "role"
-    t.boolean  "subscribed"
-    t.string   "stripeid"
+#     t.integer  "role"
+#     t.boolean  "subscribed"
+#     t.string   "stripeid"
+    t.integer  "role",                   default: 0,  null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
