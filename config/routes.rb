@@ -3,12 +3,17 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
-  resources :wikis
+  devise_for :users
 
   resources :topics
 
+  resources :wikis
+
   resources :charges, only: [:new, :create, :destroy]
 
-  devise_for :users
+  get 'downgrade' => 'users#downgrade'
+
+  get 'keep' => 'users#keep'
+
 
 end
