@@ -29,10 +29,12 @@ class User < ActiveRecord::Base
 
   def downgrade_to_standard
     return false unless self.role == :premium
-    current_user.wikis.each do |wiki|
-      wiki.update_attributes(private: false)
+    ActiveRecord::Base.transaction do
+      current_user.wikis.each do |wiki|
+        wiki.update_attributes(private: false)
+      end
+      current_user.update_attributes(role: :standard)
     end
-    current_user.update_attributes(role: :standard)
     return true
   end
 
