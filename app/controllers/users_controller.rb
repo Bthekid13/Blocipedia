@@ -9,8 +9,4 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def keep
-    redirect_to root_path
-    flash[:notice] = "Your Premium status remains intact."
-  end
 end

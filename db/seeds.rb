@@ -21,6 +21,28 @@ unless User.find_by(email: 'admin@example.com')
   admin.save!
 end
 
+# Create an premium user
+unless User.find_by(email: 'premium@example.com')
+  premium = User.new(
+    email:    'premium@example.com',
+    password: 'helloworld',
+    role:     'premium'
+  )
+  premium.skip_confirmation!
+  premium.save!
+end
+
+# Create an standard user
+unless User.find_by(email: 'standard@example.com')
+  standard = User.new(
+    email:    'standard@example.com',
+    password: 'helloworld',
+    role:     'standard'
+  )
+  standard.skip_confirmation!
+  standard.save!
+end
+
 users = User.all
 
 100.times do
