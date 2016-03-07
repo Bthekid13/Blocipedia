@@ -1,24 +1,27 @@
+
 <div class="container">
   <div class='jumbotron'>
-    <h2>Blocipedia: Social, Markdown Wikis</h2>
+    <h1>Blocipedia</h1>
     <br/>
-    <h3>Create and Share Markdown Wikis</h3>
+    <p class='lead'>Social Wikis––With Markdown</p>
     <br/>
     <br/>
-    <p>
-      <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary'  %>
-      <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary'  %>
-    </p>
+    <div class='btn-group'>
+      <%= link_to "Sign Up Today!", new_user_registration_path, class: 'btn-lg btn-success'  %>
+      <!-- <%= link_to "Sign In ", new_user_session_path, class: 'btn-lg btn-default'  %> -->
+    </div>
   </div>
   <div class="row">
 
-    <div class="col-md-6">
-      <h2>Free Plan</h2>
-      <%= link_to "Free",new_user_registration_path, class: 'btn btn-primary' %>
+    <div class="col-md-4">
+      <h2>New Topics Every Week</h2>
     </div>
 
-    <div class="col-md-6">
-      <h2>Premium Plan</h2>
-      <%= link_to "Premium", new_charge_path , class: 'btn btn-primary' %>
+    <div class="col-md-4">
+      <h2>Share With Your Friends</h2>
+    </div>
+
+    <div class="col-md-4">
+      <h2>Join the Conversation</h2>
     </div>
   </div>
