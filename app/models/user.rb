@@ -1,19 +1,26 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  #:lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable,
-  :rememberable, :trackable, :validatable, :confirmable
+         :rememberable, :trackable, :validatable, :confirmable
+
+  enum role: [:standard, :premium, :admin ]
+
+  #Associations
   has_many :wikis
-  enum role: [:admin, :standard, :premium ]
-  after_initialize :set_default_role, :if => :new_record?
+
+  #Validations
 
 
+  validates :role, inclusion: { in: roles.keys ,
+            message: "%{value} is not a valid role" }
 
-  def set_default_role
-    self.role ||= :standard
-  end
+  #Callbacks 
 
-  
+  before_save { self.role ||= :standard }
 
+  #Class Methods
+
+  #Instance Methods
+
+private #----------------------------------------------
 
 end

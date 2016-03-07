@@ -7,10 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <div class="container">
 <ul class="nav nav-tabs" >
   <li><%= link_to "Home", root_path %></li>
   <li><%= link_to "Wikis", wikis_path %></li>
+</ul>
+
 
   <div class= "pull-right">
     <% if user_signed_in? %>
@@ -23,7 +25,9 @@
     <% end %>
   </div>
 </ul>
+</div>
 
+<div class="container">
   <% if flash[:notice] %>
        <div class="alert alert-success">
          <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -41,8 +45,13 @@
        </div>
      <% end %>
 
+     <% if user_signed_in? %>
+
+
+     <% end %>
+
 
 <%= yield %>
-
+</div>
 </body>
 </html>
