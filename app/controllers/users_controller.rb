@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
 
   def downgrade
-    current_user.update_attributes(role: :standard)
-
-    current_user.wikis.each do |wiki|
-      wiki.update_attributes(private: false)
+    if current_user.downgrade_to_standard
+      flash[:notice] = "Your Premium status has been changed to Standard. All of your Wikis are now public."
+    else
+      flash[:alert] = "An error has occurred when attempting to convert your account."
     end
     redirect_to root_path
-    flash[:notice] = "Your Premium status has been changed to Standard. All of your Wikis are now public."
   end
 
   def keep

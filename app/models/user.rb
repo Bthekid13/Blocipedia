@@ -21,6 +21,21 @@ class User < ActiveRecord::Base
 
   #Instance Methods
 
+  def upgrade_to_premium
+    return false unless self.role == :standard
+    current_user.update_attributes(role: :premium)
+    return true
+  end
+
+  def downgrade_to_standard
+    return false unless self.role == :premium
+    current_user.wikis.each do |wiki|
+      wiki.update_attributes(private: false)
+    end
+    current_user.update_attributes(role: :standard)
+    return true
+  end
+
 private #----------------------------------------------
 
 end
