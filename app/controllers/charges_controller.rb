@@ -23,7 +23,7 @@ class ChargesController < ApplicationController
     )
 
     if charge.present?
-      current_user.update_attributes(role: 2)
+      current_user.update_attributes(role: :premium)
     end
 
     flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
