@@ -11,9 +11,10 @@ Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create, :destroy]
 
-  get 'downgrade' => 'users#downgrade'
-
-  get 'keep' => 'users#keep'
-
+  resources :users, only: [] do
+    member do
+      post :downgrade
+    end
+  end
 
 end

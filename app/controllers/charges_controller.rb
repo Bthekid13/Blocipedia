@@ -22,11 +22,12 @@ class ChargesController < ApplicationController
     currency: 'usd'
     )
 
-    if charge.present?
-      current_user.update_attributes(role: 2)
+    if charge.present? && current_user.upgrade_to_premium
+      flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
+    else
+      flash[:alert] = "There was an error in processing your account upgrade."
     end
 
-    flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
     redirect_to root_path
   end
 
