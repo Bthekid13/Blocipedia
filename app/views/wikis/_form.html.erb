@@ -32,7 +32,7 @@
 
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>
-        <%= f.collection_check_boxes(:user, :wiki_ids, User.all, :id ) %>
+        <%= collection_check_boxes(:user, :wiki_ids, User.all, :id, :email ) %>
 
       </div>
 

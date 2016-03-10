@@ -24,9 +24,9 @@ class User < ActiveRecord::Base
 
   #Instance Methods
 
-  def email
-    "#{email.first}."
-  end
+  # def email
+  #   "#{email.first}."
+  # end
 
 private #-----------------------------------------
 
