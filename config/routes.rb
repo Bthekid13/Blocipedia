@@ -8,6 +8,12 @@ Rails.application.routes.draw do
     resources :wikis, except: [:index]
   end
 
+  resources :wikis, only: [] do
+    resources :collaborators, only: [:create, :destroy]
+  end
+
+
+
   resources :charges, only: [:new, :create]
 
   get 'about' => 'welcome#about'

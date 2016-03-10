@@ -14,7 +14,6 @@
 
       <div class="form-group" >
         <%= f.label :title %>
-
         <%= f.text_field :title, class: 'form-control', placeholder: "Wiki Title" %>
       </div>
 
@@ -33,8 +32,11 @@
 
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>
-        <%= link_to "Add Collaborators", '#', class: 'btn btn-info' %>
+        <%= f.collection_check_boxes(:user, :wiki_ids, User.all, :id ) %>
+
       </div>
+
+
       <% end %>
     </div>
   </div>

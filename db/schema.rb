@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308235611) do
+ActiveRecord::Schema.define(version: 20160310214150) do
 
   create_table "collaborators", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "wiki_id"
+    t.integer  "topic_id"
+    t.integer  "user_id"
   end
+
+  add_index "collaborators", ["topic_id"], name: "index_collaborators_on_topic_id"
+  add_index "collaborators", ["user_id"], name: "index_collaborators_on_user_id"
+  add_index "collaborators", ["wiki_id"], name: "index_collaborators_on_wiki_id"
 
   create_table "topics", force: :cascade do |t|
     t.string   "title"

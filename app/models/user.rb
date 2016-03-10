@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   #Associations
   has_many :collaborators
-  has_many :wikis, through: :collaborators
+  has_many :wikis
 
   #Validations
 
@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
   # end
 
   #Instance Methods
+
+  def email
+    "#{email.first}."
+  end
 
 private #-----------------------------------------
 

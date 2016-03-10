@@ -17,12 +17,17 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.all
+    @wiki.user_ids = params[:user_ids]
   end
 
   def create
     @wiki = Wiki.new(wiki_params)
     @topic = Topic.find(params[:topic_id])
     @wiki.topic = @topic
+    @wiki.user = current_user
+    @wiki.user_ids = params[:user_ids]
+
 
     if @wiki.save
       flash[:notice] = "Your Wiki has been created"
@@ -38,6 +43,9 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    
+    @wiki.user_ids = params[:user_ids]
+
 
     if @wiki.save
       flash[:notice] = "Your wiki has been updated"
