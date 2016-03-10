@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305191215) do
+ActiveRecord::Schema.define(version: 20160308235611) do
+
+  create_table "collaborators", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "topics", force: :cascade do |t|
     t.string   "title"
@@ -36,25 +41,36 @@ ActiveRecord::Schema.define(version: 20160305191215) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-#     t.integer  "role"
-#     t.boolean  "subscribed"
-#     t.string   "stripeid"
-    t.integer  "role",                   default: 0,  null: false
+    t.integer  "role"
+    t.boolean  "subscribed"
+    t.string   "stripeid"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
+  create_table "wiki_topics", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "public",      default: true
+    t.text     "description"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "wikis", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.boolean  "private"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "WikiTopic_id"
+    t.integer  "topic_id"
   end
 
+  add_index "wikis", ["WikiTopic_id"], name: "index_wikis_on_WikiTopic_id"
+  add_index "wikis", ["topic_id"], name: "index_wikis_on_topic_id"
   add_index "wikis", ["user_id"], name: "index_wikis_on_user_id"
 
 end

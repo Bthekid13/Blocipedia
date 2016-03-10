@@ -1,11 +1,6 @@
 class WikisController < ApplicationController
   before_filter :authenticate_user!
 
-
-  def index
-    @wikis = Wiki.all
-  end
-
   def show
     @wiki = Wiki.find(params[:id])
     unless @wiki.private == false || (current_user.admin? || current_user.premium?)
@@ -16,6 +11,7 @@ class WikisController < ApplicationController
   end
 
   def new
+    @topic = Topic.find(params[:topic_id])
     @wiki = Wiki.new
   end
 
@@ -25,10 +21,12 @@ class WikisController < ApplicationController
 
   def create
     @wiki = Wiki.new(wiki_params)
+    @topic = Topic.find(params[:topic_id])
+    @wiki.topic = @topic
 
     if @wiki.save
       flash[:notice] = "Your Wiki has been created"
-      redirect_to @wiki
+      redirect_to @topic
     else
       flash.now[:alert] = "There was an error saving your Wiki, please try again."
       render :new
@@ -36,13 +34,14 @@ class WikisController < ApplicationController
   end
 
   def update
+    @topic = Topic.find(params[:topic_id])
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
 
     if @wiki.save
       flash[:notice] = "Your wiki has been updated"
-      redirect_to @wiki
+      redirect_to [@wiki.topic, @wiki]
     else
       flash.now[:alert] = "Your wiki could not be saved"
       render :edit
@@ -55,7 +54,7 @@ class WikisController < ApplicationController
 
     if @wiki.delete
       flash[:notice] = "Your Wiki has been deleted"
-      redirect_to wikis_path
+      redirect_to @wiki.topic
     else
       flash.now[:alert] = "We couldn't delete your wiki, please try again."
       render :index
@@ -64,6 +63,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body)
+    params.require(:wiki).permit(:title, :body, :private)
   end
 end
