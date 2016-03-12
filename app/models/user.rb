@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   enum role: [:standard, :premium, :admin ]
 
   #Associations
-  has_many :collaborators
   has_many :wikis
+  has_many :shared_wikis, through: :collaborations, source: :wikis
 
   #Validations
 
