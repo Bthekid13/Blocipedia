@@ -3,12 +3,11 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-    @collaborator = Collaborator.new(wiki_id: @wiki_id, user_id: params[:user_id])
-    unless @wiki.private == false || (current_user.admin? || current_user.premium? || @wiki.collaborator?)
-    flash[:alert] = "You must be a premium member to view that"
-    redirect_to request.referrer
-  end
 
+    unless @wiki.private == false || (current_user.admin? || current_user.premium?)
+    flash[:alert] = "You must be a premium member or a collaborator to view that"
+    redirect_to request.referrer
+    end
   end
 
   def new
@@ -26,8 +25,6 @@ class WikisController < ApplicationController
     @wiki = Wiki.new(wiki_params)
     @topic = Topic.find(params[:topic_id])
     @wiki.topic = @topic
-    @wiki.user = current_user
-    @wiki.user_ids = params[:user_ids]
 
 
     if @wiki.save
@@ -45,7 +42,7 @@ class WikisController < ApplicationController
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
 
-    @wiki.user_ids = params[:user_ids]
+    @wiki.user_ids = params[:user_id]
 
 
     if @wiki.save

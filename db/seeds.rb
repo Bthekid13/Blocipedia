@@ -10,6 +10,8 @@ require 'faker'
   user.save!
 end
 
+users = User.all
+
 # Create an admin user
 unless User.find_by(email: 'admin@example.com')
   admin = User.new(
@@ -21,7 +23,6 @@ unless User.find_by(email: 'admin@example.com')
   admin.save!
 end
 
-users = User.all
 
 5.times do
   t = Topic.new
@@ -35,7 +36,6 @@ topics = Topic.all
 
 100.times do
   w = Wiki.new
-  w.user = users.sample
   w.topic = topics.sample
   w.title = Faker::Beer.name
   w.body =  Faker::StarWars.character + Faker::StarWars.quote + Faker::Hipster.paragraph(rand(1..6)) + "\n" + rand(1..6).times.map { Faker::Hipster.paragraph(rand(1..10)) }.join("\n")

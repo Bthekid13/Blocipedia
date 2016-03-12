@@ -37,6 +37,8 @@ gem 'figaro', '1.0'
 
 gem 'redcarpet'
 
+gem 'byebug'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

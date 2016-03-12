@@ -5,6 +5,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    @wikis = policy_scope(Wiki)
   end
 
   def edit

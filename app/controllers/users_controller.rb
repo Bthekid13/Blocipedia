@@ -14,4 +14,8 @@ class UsersController < ApplicationController
     redirect_to root_path
     flash[:notice] = "Your Premium status remains intact."
   end
+
+  def show
+
+  end
 end

@@ -35,8 +35,8 @@
 
         <ul class= "nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-          <!-- # How do I add a greeting without messing up Bootstrap? -->
-          <li><%= link_to current_user.email, edit_user_registration_path %></li>
+          <li><%= link_to current_user.email, show_path  %></li>
+          <!-- edit_user_registration_path -->
 
           <% if current_user.standard? %>
           <% end %>

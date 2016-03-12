@@ -9,13 +9,12 @@ Rails.application.routes.draw do
   end
 
   resources :wikis, only: [] do
-    resources :collaborators, only: [:create, :destroy]
+    resources :collaborations, only: [:create, :destroy]
   end
 
 
-
   resources :charges, only: [:new, :create]
-
+  get 'show' => 'users#show'
   get 'about' => 'welcome#about'
 
 end
