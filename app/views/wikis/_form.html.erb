@@ -29,10 +29,11 @@
         <% end %>
       </div>
       <% end %>
-
+      <div class="form-group">
+        <%= f.collection_check_boxes(:users, @collaborators, :id, :email ) %>
+      </div>
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>
-        <%= collection_check_boxes(:user, :wiki_ids, User.all, :id, :email ) %>
 
       </div>
 

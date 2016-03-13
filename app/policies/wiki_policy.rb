@@ -1,5 +1,20 @@
 class WikiPolicy < ApplicationPolicy
 
+  def show?
+    user.present? && [:admin, :premium, :standard].include?(user.role)
+  end
+
+  def new?
+  end
+
+  def edit?
+  end
+
+  def create?
+  end
+
+
+  #Filters unauthorized records out of a collection.
   class Scope
 
     attr_reader :user, :scope
@@ -10,26 +25,7 @@ class WikiPolicy < ApplicationPolicy
     end
 
     def resolve
-      wikis = []
-      if user.present? && user.role == 'admin'
-        wikis = scope.all # If the user is an admin, they will see all of the wikis
-      elsif user.present? && user.role == 'premium'
-        all_wikis = scope.all
-        all_wikis.each do |wiki|
-          if wiki.private? != true || wiki.user == user || wiki.collaborators.include?(user)
-            wikis << wiki # if the user is premium, only show them public wikis, or the private wikis they created or the private wikis they're working on w/ collaborators
-          end
-        end
-      else # This is the common standard user
-        all_wikis = scope.all
-        wikis = []
-          all_wikis.each do |wiki|
-          if wiki.private? == false || wiki.collaborators.include?(user)
-            wikis << wiki # only show standard users public wikis they won't be able to see private wikis, however.
-          end
-        end
-      end
-      wikis # Returns the wikis array that was built in the resolve method
+      scope.where(private: false)
     end
   end
 end
