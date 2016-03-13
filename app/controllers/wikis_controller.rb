@@ -12,7 +12,6 @@ class WikisController < ApplicationController
   end
 
   def new
-    @topic = Topic.find(params[:topic_id])
     @wiki = Wiki.new
   end
 

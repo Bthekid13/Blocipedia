@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :topics do
-    resources :wikis, except: [:index]
-  end
+
+  resources :wikis, except: [:index]
+
 
   resources :wikis, only: [] do
     resources :collaborators, only: [:create, :destroy]
