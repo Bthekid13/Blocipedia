@@ -30,7 +30,7 @@
       </div>
       <% end %>
       <div class="form-group">
-        <%= f.collection_check_boxes(:users, @collaborators, :id, :email ) %>
+        <%= f.collection_check_boxes(:user_ids, @collaborators, :id, :email ) %>
       </div>
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>
