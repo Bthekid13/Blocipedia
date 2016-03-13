@@ -16,6 +16,10 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @stripe_btn_data = {
+      key: "#{ Rails.configuration.stripe[:publishable_key] }",
+      description: "BigMoney Membership - #{current_user.email}",
+      amount: 1500
+    }
   end
 end

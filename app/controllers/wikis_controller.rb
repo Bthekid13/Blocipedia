@@ -66,6 +66,14 @@ class WikisController < ApplicationController
       render :index
     end
   end
+
+  def premium
+  end
+
+  def standard
+  end
+
+
   private
 
   def wiki_params

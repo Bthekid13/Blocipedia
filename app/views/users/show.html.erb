@@ -1,3 +1,12 @@
-<h1> <%= current_user.email %> </h1>
 
-<%= render current_user.wikis %>
+<div class="container">
+  <div class="row">
+    <h2> <%= current_user.email %> </h2>
+    <% if current_user.premium? %>
+      <h4>Status: Premium</h4>
+    <% else %>
+      <h4> Status: Standard</h4>
+    <% end %>
+    <%= link_to "Upgrade to Premium", new_charge_path, class: 'btn-sm btn-success' %>
+  </div>
+</div>
