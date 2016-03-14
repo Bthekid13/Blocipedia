@@ -5,8 +5,10 @@ class User < ActiveRecord::Base
   enum role: [:standard, :premium, :admin ]
 
   #Associations
+  has_many :wikis
   has_many :collaborations
-  has_many :wikis, through: :collaborations
+  has_many :shared_wikis, through: :collaborations, source: :wikis
+  #This is used when there's a name conflict.
 
   #Validations
 

@@ -1,6 +1,1 @@
 <%= render partial: 'form', locals: {wiki: @wiki} %>
-
-
-<div class='checkbox_container'>
-  <%= collection_check_boxes(:wiki, :user_ids, User.all, :id, :email ) %>
-</div>

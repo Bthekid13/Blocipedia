@@ -1,30 +1,36 @@
 class WikisController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    @wikis = Wiki.all
+  end
+
   def show
     @wiki = Wiki.find(params[:id])
-
-    unless @wiki.private == false || (current_user.admin? || current_user.premium?)
-    flash[:alert] = "You must be a premium member or a collaborator to view that"
-    redirect_to request.referrer
-    end
+    #
+    # unless @wiki.private == false || (current_user.admin? || current_user.premium?)
+    # flash[:alert] = "You must be a premium member or a collaborator to view that"
+    # redirect_to request.referrer
+    # end
   end
 
   def new
-    @topic = Topic.find(params[:topic_id])
     @wiki = Wiki.new
+    @collaborations = User.all - [current_user]
+    #Sometimes it's best to just ask yourself:
+    #define what you're trying to do. Break it down to the most basic level.
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
-    @users = User.all
-    @wiki.user_ids = params[:user_ids]
+    @wiki.user = current_user
+    @collaborations = User.all - [@wiki.user]
+
   end
 
   def create
     @wiki = Wiki.new(wiki_params)
-    @topic = Topic.find(params[:topic_id])
-    @wiki.topic = @topic
+    @wiki.user = current_user
 
 
     if @wiki.save
@@ -37,17 +43,12 @@ class WikisController < ApplicationController
   end
 
   def update
-    @topic = Topic.find(params[:topic_id])
     @wiki = Wiki.find(params[:id])
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
-
-    @wiki.user_ids = params[:user_id]
-
+    @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
       flash[:notice] = "Your wiki has been updated"
-      redirect_to [@wiki.topic, @wiki]
+      redirect_to @wiki
     else
       flash.now[:alert] = "Your wiki could not be saved"
       render :edit
@@ -60,7 +61,7 @@ class WikisController < ApplicationController
 
     if @wiki.delete
       flash[:notice] = "Your Wiki has been deleted"
-      redirect_to @wiki.topic
+      redirect_to @wiki
     else
       flash.now[:alert] = "We couldn't delete your wiki, please try again."
       render :index
@@ -77,6 +78,6 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :private)
+    params.require(:wiki).permit(:title, :body, :private, user_ids: [])
   end
 end

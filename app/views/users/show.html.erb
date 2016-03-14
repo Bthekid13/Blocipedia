@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="row">
-    <h2> <%= current_user.email %> </h2>
+    <h2> <%= current_user.name %> </h2>
     <% if current_user.premium? %>
       <h4>Status: Premium</h4>
     <% else %>
@@ -9,4 +9,7 @@
     <% end %>
     <%= link_to "Upgrade to Premium", new_charge_path, class: 'btn-sm btn-success' %>
   </div>
+
+
+
 </div>

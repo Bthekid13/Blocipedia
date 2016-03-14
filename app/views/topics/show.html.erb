@@ -7,11 +7,11 @@
       <p class="lead">
         <%= @topic.body %>
       </p>
-      <% @topic.wikis.each do |wiki| %>
+      <% @wikis.each do |wiki| %>
       <div class="media">
         <div class="media-body">
           <h4 class="media-heading">
-            <%= link_to wiki.title, topic_wiki_path(@topic, wiki) %>
+            <%= link_to wiki.title, wiki %>
           </h4>
           <small>
              submitted <%= time_ago_in_words(wiki.created_at) %> ago <br>
@@ -22,9 +22,11 @@
     </div>
 
     <div class="col-md-4">
-      <%= link_to "New Wiki", new_topic_wiki_path(@topic), class: 'btn btn-success' %>
-      <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
-      <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger' %>
+      <%= link_to "New Wiki", new_wiki_path(@wiki), class: 'btn btn-success' %>
+      <% if current_user.admin? %>
+        <%= link_to "Edit Topic", edit_topic_path, class: 'btn btn-success' %>
+        <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger' %>
+      <% end %>
     </div>
   </div>
 </div>

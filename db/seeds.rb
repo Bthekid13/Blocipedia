@@ -3,6 +3,7 @@ require 'faker'
 # Create Users
 5.times do
   user = User.new(
+    name:     Faker::StarWars.character,
     email:    Faker::Internet.email,
     password: Faker::Lorem.characters(10)
   )
@@ -15,6 +16,7 @@ users = User.all
 # Create an admin user
 unless User.find_by(email: 'admin@example.com')
   admin = User.new(
+    name:     'Donald Trump',
     email:    'admin@example.com',
     password: 'helloworld',
     role:     'admin'

@@ -1,4 +1,4 @@
 class Collaboration < ActiveRecord::Base
-  has_many :users
-  has_many :wikis
+  belongs_to :user
+  belongs_to :wiki
 end

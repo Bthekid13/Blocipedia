@@ -1,11 +1,12 @@
 class TopicsController < ApplicationController
+
   def index
     @topics = Topic.all
   end
 
   def show
     @topic = Topic.find(params[:id])
-    @wikis = policy_scope(Wiki)
+    @wiki = Wiki.find(params[:id])
   end
 
   def edit
