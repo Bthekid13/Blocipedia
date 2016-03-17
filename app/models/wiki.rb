@@ -8,7 +8,8 @@ class Wiki < ActiveRecord::Base
 # Scopes
 
   scope :public_wikis, -> { where(private: false) }
-  scope :personal_wikis, -> (user) { joins(collaborations: user) }
+  scope :shared_wikis, -> (user) { joins(:collaborations).where({ collaborations: { user: user } }) }
+  scope :personal_wikis, -> (user) { where(user: user) }
 
 # Returns User's Collaborations
 
