@@ -7,15 +7,12 @@ class Wiki < ActiveRecord::Base
 
 # Scopes
 
-# Returns Public Wikis
   scope :public_wikis, -> { where(private: false) }
-# Returns User's Wikis
-  # scope :personal_wikis, -> (user)  { where(user: @user) + joins(users: @user) }
+  scope :personal_wikis, -> (user) { joins(collaborations: user) }
 
 # Returns User's Collaborations
 
 
-  scope :personal_wikis, -> (user) { joins(collaborations: :user) }
 
   # scope.where(user: @user) + scope.joins(:users)
 

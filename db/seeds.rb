@@ -37,8 +37,10 @@ end
 topics = Topic.all
 
 100.times do
+  owner = users.sample
   w = Wiki.new
-  w.topic = topics.sample
+  w.user = owner
+  w.user_ids = rand(0..10).times.map { (users - [owner]).sample.id }
   w.title = Faker::Beer.name
   w.body =  Faker::StarWars.character + Faker::StarWars.quote + Faker::Hipster.paragraph(rand(1..6)) + "\n" + rand(1..6).times.map { Faker::Hipster.paragraph(rand(1..10)) }.join("\n")
   w.private = Faker::Boolean.boolean
