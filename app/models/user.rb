@@ -7,8 +7,10 @@ class User < ActiveRecord::Base
   #Associations
   has_many :wikis
   has_many :collaborations
-  has_many :shared_wikis, through: :collaborations, source: :wikis
-  #This is used when there's a name conflict.
+  has_many :shared_wikis, through: :collaborations, source: :wikis   #This is used when there's a name conflict.
+
+  # Scopes
+
 
   #Validations
 

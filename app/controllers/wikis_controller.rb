@@ -2,7 +2,7 @@ class WikisController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki)
   end
 
   def show
@@ -35,7 +35,7 @@ class WikisController < ApplicationController
 
     if @wiki.save
       flash[:notice] = "Your Wiki has been created"
-      redirect_to @topic
+      redirect_to @wiki
     else
       flash.now[:alert] = "There was an error saving your Wiki, please try again."
       render :new

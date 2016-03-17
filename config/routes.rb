@@ -10,9 +10,6 @@ Rails.application.routes.draw do
 
   resources :wikis
 
-
-
-
   get 'show' => 'users#show'
   get 'about' => 'welcome#about'
   get 'premium' => 'wikis#premium'
