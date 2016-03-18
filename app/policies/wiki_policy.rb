@@ -1,8 +1,29 @@
 class WikiPolicy < ApplicationPolicy
-  attr_reader :user, :wiki
 
-  def initialize(user, wiki)
-    @user = user
-    @wiki = wiki
+def index?
+  true
+end
+
+def show
+  true
+end
+
+  class Scope
+
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      if user.admin?
+        scope.all
+      else
+        (scope.public_wikis + scope.shared_wikis(user) + scope.personal_wikis(user)).uniq
+
+      end
+    end
   end
 end

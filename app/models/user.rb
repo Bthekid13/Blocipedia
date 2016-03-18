@@ -6,6 +6,19 @@ class User < ActiveRecord::Base
 
   #Associations
   has_many :wikis
+  has_many :collaborations
+  has_many :shared_wikis, through: :collaborations, source: :wiki   #This is used when there's a name conflict.
+
+  # Scopes
+
+  # Returns Public Wikis
+    scope :public_wikis, -> { where(private: false) }
+  # Returns User's Wikis
+    scope :personal_wikis, -> (user)  { where(user: user) }
+  # Returns User's Collaborations
+    scope :shared_wikis, -> (user) { joins(:collaborations).where({ collaborations: { user: user } }) }
+
+
 
   #Validations
 
@@ -13,7 +26,7 @@ class User < ActiveRecord::Base
   validates :role, inclusion: { in: roles.keys ,
             message: "%{value} is not a valid role" }
 
-  #Callbacks 
+  #Callbacks
 
   before_save { self.role ||= :standard }
 
@@ -21,11 +34,12 @@ class User < ActiveRecord::Base
 
   #Instance Methods
 
-  def upgrade_to_premium
-    return false unless self.role.to_sym == :standard
-    update_attributes(role: :premium)
-    return true
-  end
+
+  # def email
+  #   "#{email.first}."
+  # end
+
+private #-----------------------------------------
 
   def downgrade_to_standard
     return false unless self.role.to_sym == :premium
