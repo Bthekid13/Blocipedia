@@ -1,7 +1,7 @@
 require 'faker'
 
 # Create Users
-5.times do
+20.times do
   user = User.new(
     name:     Faker::StarWars.character,
     email:    Faker::Internet.email,

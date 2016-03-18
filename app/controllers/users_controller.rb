@@ -1,22 +1,8 @@
 class UsersController < ApplicationController
 
-  def downgrade
-    current_user.update_attributes(role: 0)
-
-    current_user.wikis.each do |wiki|
-      wiki.update_attributes(private: false)
-    end
-    redirect_to root_path
-    flash[:notice] = "Your Premium status has been changed to Standard. All of your Wikis are now public."
-  end
-  #
-  def keep
-    redirect_to root_path
-    flash[:notice] = "Your Premium status remains intact."
-  end
 
   def show
     @user = current_user
-    @wikis = @user.wikis.personal_wikis(current_user)
+    @wikis = Wiki.personal_wikis(current_user) + Wiki.shared_wikis(current_user)
   end
 end

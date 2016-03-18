@@ -21,8 +21,8 @@ end
       if user.admin?
         scope.all
       else
-        scope.where(user: @user) + scope.joins(collaborations: @user)
-
+        (scope.public_wikis + scope.shared_wikis(user) + scope.personal_wikis(user)).uniq
+        
             # This list all collaborations -> scope.joins(collaborations: :user)
 
       end

@@ -2,16 +2,23 @@
 <div class="container">
   <div class="row">
     <h2> <%= current_user.name %> </h2>
+
     <% if current_user.premium? %>
       <h4>Status: Premium</h4>
     <% else %>
       <h4> Status: Standard</h4>
     <% end %>
-    <%= link_to "Upgrade to Premium", new_charge_path, class: 'btn-sm btn-success' %>
+
+    <% if current_user.standard? %>
+      <%= link_to "Upgrade to Premium", new_charge_path, class: 'btn-sm btn-success' %>
+    <% else %>
+      <%= link_to "Downgrade to Standard", new_charge_path, class: 'btn-sm btn-danger' %>
+    <% end %>
+
   </div>
 
   <h3> Your Wikis </h3>
-  <% @user.wikis.each do |wiki| %>
+  <% @wikis.each do |wiki| %>
     <div class="media">
       <div class="media-body">
         <h4 class="media-heading">
