@@ -22,8 +22,6 @@ end
         scope.all
       else
         (scope.public_wikis + scope.shared_wikis(user) + scope.personal_wikis(user)).uniq
-        
-            # This list all collaborations -> scope.joins(collaborations: :user)
 
       end
     end
