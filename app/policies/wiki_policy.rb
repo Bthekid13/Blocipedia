@@ -22,7 +22,6 @@ end
         scope.all
       else
         (scope.public_wikis + scope.shared_wikis(user) + scope.personal_wikis(user)).uniq
-
       end
     end
   end
