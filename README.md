@@ -17,7 +17,7 @@ Demo: [wil-burke-blocipedia.herokuapp.com] (wil-burke-blocipedia.herokuapp.com)
 #Getting Started
 
 1. You must make a free account before creating Public Wikis.
-2. Want to make your Wikis private? Sign up for a premium account.
+2. Sign up for a premium account to make your Wikis private.
 3. Feel free collaborate wikis with other users
 
 # Support
