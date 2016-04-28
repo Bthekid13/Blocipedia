@@ -1,9 +1,6 @@
 #Blocipedia
 
-Create markdown wikis.
-
-Wikis can be public or private. Users have the option of collaborating with other users.
-
+A social application that allows users to create public and private Markdown-based wikis.
 Demo: [wil-burke-blocipedia.herokuapp.com] (wil-burke-blocipedia.herokuapp.com)
 
 #Features
