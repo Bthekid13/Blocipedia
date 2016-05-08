@@ -1,5 +1,19 @@
+# == Schema Information
+#
+# Table name: wikis
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  body       :text
+#  private    :boolean
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  topic_id   :integer
+#  users_id   :integer
+#
+
 class Wiki < ActiveRecord::Base
-  belongs_to :topic
   belongs_to :user
   has_many :collaborations
   has_many :users, through: :collaborations

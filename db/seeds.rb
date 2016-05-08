@@ -48,16 +48,6 @@ end
 
 users = User.all
 
-5.times do
-  t = Topic.new
-  t.title = Faker::Beer.name
-  t.body = Faker::StarWars.quote
-
-  t.save!
-end
-
-topics = Topic.all
-
 100.times do
   owner = users.sample
   w = Wiki.new
@@ -76,4 +66,3 @@ end
 
 puts "#{Wiki.count} Wikis created"
 puts "#{User.count} Users created"
-puts "#{Topic.count} Topics created"
