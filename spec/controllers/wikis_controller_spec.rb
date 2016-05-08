@@ -35,6 +35,7 @@ RSpec.describe WikisController, :type => :controller do
       get :show, {id: @wiki.id}
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:show)
+      expect(assigns(:wiki)).to be(@wiki)
     end
   end
 
