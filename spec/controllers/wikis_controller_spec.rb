@@ -16,32 +16,60 @@
 require 'rails_helper'
 
 RSpec.describe WikisController, :type => :controller do
-  let (:wiki) { create(:wiki) }
+  before :example do
+    @user = create :user
+    sign_in @user
+    @wiki = create :wiki
+  end
+
   describe "GET index" do
     it "returns http success" do
-      get :index, {id: wiki.id}
-      expect(response).to have_http_success(:success)
+      get :index
+      expect(response).to have_http_status(:success)
+    end
+    it "renders index template template" do
+      get :index
+      expect(response).to render_template(:index)
     end
   end
 
   describe "GET show" do
+    let(:request) {get :show, {id: @wiki.id}}
     it "returns http success" do
-      get :show, {id: wiki.id}
-      expect(response).to have_http_success(:success)
+      request
+      expect(response).to have_http_status(:success)
     end
+
+    it "renders show template" do
+      request
+      expect(response).to render_template(:show)
+    end
+    # it "assigns wiki properly" do
+    #   expect(assigns(:wiki)).to eq(@wiki)
+    # end
   end
 
   describe "GET new" do
     it "returns http success" do
-      get :new, {id: wiki.id}
-      expect(response).to have_http_success(:success)
+      get :new
+      expect(response).to have_http_status(:success)
+    end
+    it "renders new template" do
+      get :new
+      expect(response).to render_template(:new)
     end
   end
 
   describe "GET edit" do
+    let(:request) { get :edit, {id: @wiki.id}}
+
     it "returns http success" do
-      get :edit, {id: wiki.id}
-      expect(response).to have_http_success(:success)
+      request
+      expect(response).to have_http_status(:success)
+    end
+    it "renders edit template" do
+      request
+      expect(response).to render_template(:edit)
     end
   end
 end
