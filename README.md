@@ -2,7 +2,7 @@
 
 A social application that allows users to create public and private Markdown-based wikis.
 
-Demo: [https://wil-burke-blocipedia.herokuapp.com] (wil-burke-blocipedia.herokuapp.com)
+Demo: [blocipedia.com] (https://wil-burke-blocipedia.herokuapp.com)
 
 #Features
 
