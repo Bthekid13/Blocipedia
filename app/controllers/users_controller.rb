@@ -1,17 +1,33 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string
+#  last_sign_in_ip        :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  role                   :integer          default(0), not null
+#  collaboration_id       :integer
+#  name                   :string
+#
+
 class UsersController < ApplicationController
 
-  def downgrade
-    current_user.update_attributes(role: 0)
+  def show
+    @user = current_user
+    @wikis = Wiki.personal_wikis(current_user) + Wiki.shared_wikis(current_user)
+  end
 
-    current_user.wikis.each do |wiki|
-      wiki.update_attributes(private: false)
-    end
-    redirect_to root_path
-    flash[:notice] = "Your Premium status has been changed to Standard. All of your Wikis are now public."
-  end
-  #
-  def keep
-    redirect_to root_path
-    flash[:notice] = "Your Premium status remains intact."
-  end
 end

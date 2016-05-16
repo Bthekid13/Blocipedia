@@ -9,11 +9,11 @@ class ApplicationPolicy
   end
 
   def index?
-    @user.standard?
+    user.standard?
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    scope.where(id: record.id).exists?
   end
 
   def create?
@@ -33,7 +33,6 @@ class ApplicationPolicy
   end
 
   def destroy?
-     @user.admin?
   end
 
   def scope

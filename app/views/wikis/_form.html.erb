@@ -6,7 +6,7 @@
       <ul>
         <li> Stay on topic </li>
         <li> Incorperate as many puns as possible </li>
-        <li> Write nothing your dog would be ashamed of </li>
+        <li> Please, do not write anything your dog would be ashamed of </li>
       </ul>
     </div>
     <div class="col-md-8">
@@ -14,7 +14,6 @@
 
       <div class="form-group" >
         <%= f.label :title %>
-
         <%= f.text_field :title, class: 'form-control', placeholder: "Wiki Title" %>
       </div>
 
@@ -34,6 +33,11 @@
       <div class="form-group">
         <%= f.submit "Save", class: 'btn btn-success' %>
       </div>
+
+      <div class="form-group">
+        <%= f.collection_check_boxes(:user_ids, @collaborations, :id, :name ) %>
+      </div>
+
       <% end %>
     </div>
   </div>
