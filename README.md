@@ -1,5 +1,7 @@
 #Blocipedia
 
+https://travis-ci.org/Bthekid13/Blocipedia.svg?branch=master
+
 A social application that allows users to create public and private Markdown-based wikis.
 
 Demo: [blocipedia.com] (https://wil-burke-blocipedia.herokuapp.com)
