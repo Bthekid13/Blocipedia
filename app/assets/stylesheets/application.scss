@@ -10,8 +10,37 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+/* Layout
+======================*/
+
+body {
+  padding-top: 75px;
+}
+
+/* glyphcon
+======================*/
+
+.glyphicon {
+  font-size: 3em;
+  display:block;
+  text-align: center;
+  color: #3a87ad;
+}
+
+
+/* Collaborator Checkboxes
+======================*/
+
+.checkbox_container {
+  display: inline-block;
+}
+
+
+
+
+/* Layout
+======================*/

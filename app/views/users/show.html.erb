@@ -1,0 +1,35 @@
+
+<div class="container">
+  <div class="row">
+    <h2> <%= current_user.name %> </h2>
+
+    <% if current_user.premium? %>
+      <h4>Status: Premium</h4>
+    <% else %>
+      <h4> Status: Standard</h4>
+    <% end %>
+
+    <% if current_user.standard? %>
+      <%= link_to "Upgrade to Premium", new_charge_path, class: 'btn-sm btn-success' %>
+    <% else %>
+      <%= link_to "Downgrade to Standard", new_charge_path, class: 'btn-sm btn-danger' %>
+    <% end %>
+
+  </div>
+
+  <h3> Your Wikis </h3>
+  <% @wikis.each do |wiki| %>
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= link_to wiki.title, wiki %>
+        </h4>
+      </div>
+    </div>
+  <% end %>
+
+
+
+
+
+</div>
