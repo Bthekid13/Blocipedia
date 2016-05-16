@@ -1,8 +1,6 @@
 #Blocipedia
 
-[![Build Status](https://travis-ci.org/Bthekid13/Blocipedia.svg?branch=master)](https://travis-ci.org/Bthekid13/Blocipedia)
-
-[![Code Climate](https://codeclimate.com/github/Bthekid13/Blocipedia/badges/gpa.svg)](https://codeclimate.com/github/Bthekid13/Blocipedia)
+[![Build Status](https://travis-ci.org/Bthekid13/Blocipedia.svg?branch=master)](https://travis-ci.org/Bthekid13/Blocipedia)  [![Code Climate](https://codeclimate.com/github/Bthekid13/Blocipedia/badges/gpa.svg)](https://codeclimate.com/github/Bthekid13/Blocipedia)
 
 A social application that allows users to create public and private Markdown-based wikis.
 
