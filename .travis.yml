@@ -1,6 +1,11 @@
 language: ruby
 rvm:
  - 2.2.4
+# whitelist
+branches:
+  only:
+    - master
+    - stable
 
 # uncomment this line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
