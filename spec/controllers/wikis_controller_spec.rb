@@ -44,9 +44,6 @@ RSpec.describe WikisController, :type => :controller do
       request
       expect(response).to render_template(:show)
     end
-    # it "assigns wiki properly" do
-    #   expect(assigns(:wiki)).to eq(@wiki)
-    # end
   end
 
   describe "GET new" do
@@ -70,6 +67,13 @@ RSpec.describe WikisController, :type => :controller do
     it "renders edit template" do
       request
       expect(response).to render_template(:edit)
+    end
+  end
+  describe "DELETE destroy" do
+    it "redirects to referrer " do
+      request.env["HTTP_REFERER"] = root_path
+      delete :destroy, {id: @wiki.id}
+      expect(response).to redirect_to request.referrer
     end
   end
 end

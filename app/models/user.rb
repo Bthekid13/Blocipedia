@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   enum role: [:standard, :premium, :admin ]
 
   #Associations
-  has_many :wikis
+  has_many :wikis, dependent: :destroy
   has_many :collaborations
   has_many :shared_wikis, through: :collaborations, source: :wiki
   #This is used when there's a name conflict.

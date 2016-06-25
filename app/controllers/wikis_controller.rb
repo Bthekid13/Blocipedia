@@ -66,10 +66,10 @@ class WikisController < ApplicationController
 
     if @wiki.delete
       flash[:notice] = "Your Wiki has been deleted"
-      redirect_to @wiki
+      redirect_to request.referrer
     else
       flash.now[:alert] = "We couldn't delete your wiki, please try again."
-      render :index
+      redirect_to request.referrer
     end
   end
 
