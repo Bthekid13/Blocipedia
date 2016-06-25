@@ -10,6 +10,7 @@ Demo: [blocipedia.com] (https://wil-burke-blocipedia.herokuapp.com)
 
 **This app is constructed with Ruby on Rails and Bootstrap**
 
+*  Stripe allows users to upgrade to a premium account
 *  Redcarpet integrates markdown functionality,
 *  Devise manages users' sessions.
 *  Pundit restricts standard users from viewing private wikis.
