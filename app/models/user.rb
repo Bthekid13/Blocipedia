@@ -35,7 +35,17 @@ class User < ActiveRecord::Base
   has_many :shared_wikis, through: :collaborations, source: :wiki
   #This is used when there's a name conflict.
 
-  # Scopes
+  # validations
+  #
+  validates :name, uniqueness: { case_sensitive: false },
+              presence: true,
+              length: {minimum: 2, maximum: 26}
+
+  validates :email, uniqueness: {case_sensitive: false },
+            presence: true, length: { minimum: 3 }
+
+  validates :role, presence: true,
+            inclusion: { in: roles.keys, message: "%{value} is not a valid role" }
 
   # Returns Public Wikis
     scope :public_wikis, -> { where(private: false) }

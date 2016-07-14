@@ -16,7 +16,7 @@ users = User.all
 # Create an admin user
 unless User.find_by(email: 'admin@example.com')
   admin = User.new(
-    name:     'Donald Trump',
+    name:     'joe smith',
     email:    'admin@example.com',
     password: 'helloworld',
     role:     'admin'

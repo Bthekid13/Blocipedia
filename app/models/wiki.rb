@@ -18,6 +18,10 @@ class Wiki < ActiveRecord::Base
   has_many :collaborations
   has_many :users, through: :collaborations
 
+  #validations
+  validates :title, length: {minimum: 5}, presence: true
+  validates :body, length: {minimum: 15}, presence: true
+
 
 # Scopes
 

@@ -22,6 +22,7 @@ RSpec.describe WikisController, :type => :controller do
     @wiki = create :wiki
   end
 
+context
   describe "GET index" do
     it "returns http success" do
       get :index
@@ -43,6 +44,10 @@ RSpec.describe WikisController, :type => :controller do
     it "renders show template" do
       request
       expect(response).to render_template(:show)
+    end
+    it "assigns my_wiki to @wiki" do
+      get :show, { id: @wiki.id }
+      expect(assigns(:wiki)).to eq(@wiki)
     end
   end
 

@@ -21,11 +21,14 @@
 #  role                   :integer          default(0), not null
 #  collaboration_id       :integer
 #  name                   :string
-#
+
+
+require "faker"
 
 FactoryGirl.define do
   factory :user do
     sequence(:email, 100) { |n| "person#{n}@example.com" }
+    sequence(:name) {|n|"#{n}#{Faker::Name.name}"}
     password "helloworld"
     password_confirmation "helloworld"
     confirmed_at Time.now
