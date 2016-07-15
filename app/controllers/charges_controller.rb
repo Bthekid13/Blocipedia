@@ -27,7 +27,6 @@ class ChargesController < ApplicationController
     else
       flash[:alert] = "There was an error in processing your account upgrade."
     end
-
     redirect_to root_path
   end
 
@@ -38,6 +37,4 @@ class ChargesController < ApplicationController
 rescue Stripe::CardError => e
   flash.now[:alert] = e.message
   redirect_to new_charge_path
-
-
 end

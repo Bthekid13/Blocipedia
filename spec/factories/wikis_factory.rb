@@ -3,6 +3,6 @@ FactoryGirl.define do
     title "Dylan"
     body "Highway 61 Revisited"
     private false
-    user nil
+    user 
   end
 end
