@@ -8,8 +8,11 @@ class ApplicationPolicy
     @record = record
   end
 
-  def index?
-    user.present?
+def index
+    return true unless record.private?
+    if record.private?
+      return false unless user.premium? || user.admin?
+    end
   end
 
   def show?

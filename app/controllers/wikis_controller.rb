@@ -23,15 +23,18 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def new
     @wiki = Wiki.new
+    authorize @wiki
     @collaborations = User.all - [current_user]
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     @wiki.user = current_user
     @collaborations = User.all - [@wiki.user]
   end
@@ -51,6 +54,7 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     @wiki.assign_attributes(wiki_params)
+    authorize @wiki
     if @wiki.save
       flash[:notice] = "Your Wiki has been created"
       redirect_to @wiki
@@ -62,7 +66,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
-    authorize Wiki
+    authorize @wiki
 
     if @wiki.delete
       flash[:notice] = "Your Wiki has been deleted"

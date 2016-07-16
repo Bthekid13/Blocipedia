@@ -7,7 +7,6 @@ require 'faker'
     email:    Faker::Internet.email,
     password: Faker::Lorem.characters(10)
   )
-  user.skip_confirmation!
   user.save!
 end
 
@@ -21,28 +20,27 @@ unless User.find_by(email: 'admin@example.com')
     password: 'helloworld',
     role:     'admin'
   )
-  admin.skip_confirmation!
   admin.save!
 end
 # Create an premium user
 unless User.find_by(email: 'premium@example.com')
   premium = User.new(
+    name:     'joe smith',
     email:    'premium@example.com',
     password: 'helloworld',
     role:     'premium'
   )
-  premium.skip_confirmation!
   premium.save!
 end
 
 # Create an standard user
 unless User.find_by(email: 'standard@example.com')
   standard = User.new(
+    name:     'joe smith',
     email:    'standard@example.com',
     password: 'helloworld',
     role:     'standard'
   )
-  standard.skip_confirmation!
   standard.save!
 end
 

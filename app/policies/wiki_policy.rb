@@ -1,12 +1,36 @@
 class WikiPolicy < ApplicationPolicy
 
-def index?
-  true
-end
+  def index
+    return true unless record.private?
+    if record.private?
+      return false unless user.premium? || user.admin?
+    end
+  end
 
-def show
-  true
-end
+  def create?
+    return user.present?
+    if record.private?
+      user.present? && (user.admin? || user.premium?)
+    end
+  end
+
+  def update?
+    return false unless user.present?
+    if record.private?
+      return false unless user.premium? || user.admin? || record.user == user
+    end
+    user.admin? || record.user == user
+  end
+
+
+  def destroy?
+    user.present? && user.admin?
+  end
+
+  def show?
+    return true unless record.private?
+    user.present? && (user.admin? || user.premium?)
+  end
 
   class Scope
 
