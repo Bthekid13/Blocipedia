@@ -16,7 +16,7 @@ end
 
 group :test do
   gem 'pry-rails'
-  gem 'shoulda'
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end

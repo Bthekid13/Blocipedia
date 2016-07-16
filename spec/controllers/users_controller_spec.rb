@@ -18,7 +18,6 @@ RSpec.describe UsersController, type: :controller do
   context "standard user" do
     before do
       sign_in(@user)
-      @user.confirm
     end
     describe "GET show" do
       it "returns http success" do
@@ -36,7 +35,6 @@ RSpec.describe UsersController, type: :controller do
     before do
       sign_in(@user)
       @user.premium!
-      @user.confirm
     end
     describe "GET show" do
       it "returns http success" do
