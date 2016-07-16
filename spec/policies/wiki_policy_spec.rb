@@ -8,10 +8,23 @@ RSpec.describe WikiPolicy, type: :policy do
   let(:my_wiki) { create(:wiki, user: my_user) }
 
 
-permissions :update?, :edit? do
-  it "denies access if Wiki doensn't belong to the user" do
-    expect(subject).not_to permit(other_user, my_wiki)
-  end
-end
+  permissions :update?, :edit? do
+    it "denies access if Wiki doensn't belong to the user" do
+      expect(subject).not_to permit(other_user, my_wiki)
+    end
 
+    it "grants access if a wiki belongs to a user" do
+      expect(subject).to permit(my_user, my_wiki)
+    end
+  end
+
+  permissions :destroy? do
+    it "denies access if Wiki doensn't belong to the user" do
+      expect(subject).not_to permit(other_user, my_wiki)
+    end
+
+    it "grants access if a wiki belongs to a user" do
+      expect(subject).to permit(my_user, my_wiki)
+    end
+  end
 end

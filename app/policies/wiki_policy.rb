@@ -24,7 +24,7 @@ class WikiPolicy < ApplicationPolicy
 
 
   def destroy?
-    user.present? && user.admin?
+    user.admin? || record.user == user
   end
 
   def show?
