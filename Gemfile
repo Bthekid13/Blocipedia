@@ -12,6 +12,7 @@ group :development, :test do
   gem "better_errors"
   gem 'spring'
   gem 'annotate'
+  gem "codeclimate-test-reporter", group: :test, require: nil
 end
 
 group :test do
